@@ -1,0 +1,44 @@
+AppName="ChenHCApp"
+
+DBDriver = "postgres"
+DBHost = "123.207.25.239"
+DBPort = "5432"
+DBUser = "chc"
+DBPassword = "chc123"
+DBName = "chcstore"
+
+#Redis
+RedisHost = ""
+RedisPort = ""
+RedisPwd = ""
+RedisDB = 0
+
+#服务器地址
+serverPort="6616"
+
+#日志文件名称
+errOutPutPath="logger_err.log"
+outPutPath="server.log"
+ConsoleOutPutPath="log/server_console.log"
+JsonOutPutPath="log/server_json.log"
+ErrOutPutPath="log/logger_err.log"
+
+#支持的文件后缀
+suffixes = [
+    "xlsx",
+]
+
+#日志缓冲区
+LoggerBuffer=1000
+
+#日志缓冲区等候时间(秒)
+LoggerBufDuration=5
+
+#会话相关
+SessionKey="ag_ChenHC"
+MaxLifeTime=7200
+Path="/"
+HTTPOnly=false
+MaxAge=432000
+
+origin="http://kzz.io"

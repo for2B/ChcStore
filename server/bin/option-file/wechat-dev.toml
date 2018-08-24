@@ -1,0 +1,9 @@
+
+#模拟登陆成功后跳转的域名
+ ServerHost=""
+
+#微信公众号相关
+AppID=""
+AppSecret=""
+
+
