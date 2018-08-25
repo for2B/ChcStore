@@ -39,3 +39,5 @@
 2018-08-24 20:29:04	[34mINFO[0m	E:/d代购/server/src/ChenHC/chc/middleware/log.go:27	api log	{"url": "/api/test", "method": "GET", "remoteAddr": "[::1]:49765", "errMsg": "success", "elapsed": "9.0005ms", "body": "", "form": {}, "multipartFormFile": {}, "multipartFormValue": {}}
 2018-08-24 20:32:04	[34mINFO[0m	E:/d代购/server/src/ChenHC/chc/middleware/log.go:27	api log	{"url": "/api/test", "method": "GET", "remoteAddr": "[::1]:49840", "errMsg": "success", "elapsed": "8.0005ms", "body": "", "form": {}, "multipartFormFile": {}, "multipartFormValue": {}}
 2018-08-24 22:33:05	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}
+2018-08-24 22:56:43	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}
+2018-08-24 22:58:02	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}

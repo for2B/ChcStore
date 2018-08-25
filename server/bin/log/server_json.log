@@ -39,3 +39,5 @@
 {"level":"INFO","time":"2018-08-24 20:29:04","caller":"E:/d代购/server/src/ChenHC/chc/middleware/log.go:27","msg":"api log","url":"/api/test","method":"GET","remoteAddr":"[::1]:49765","errMsg":"success","elapsed":"9.0005ms","body":"","form":{},"multipartFormFile":{},"multipartFormValue":{}}
 {"level":"INFO","time":"2018-08-24 20:32:04","caller":"E:/d代购/server/src/ChenHC/chc/middleware/log.go:27","msg":"api log","url":"/api/test","method":"GET","remoteAddr":"[::1]:49840","errMsg":"success","elapsed":"8.0005ms","body":"","form":{},"multipartFormFile":{},"multipartFormValue":{}}
 {"level":"INFO","time":"2018-08-24 22:33:05","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}
+{"level":"INFO","time":"2018-08-24 22:56:43","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}
+{"level":"INFO","time":"2018-08-24 22:58:02","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}
