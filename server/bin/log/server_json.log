@@ -42,3 +42,4 @@
 {"level":"INFO","time":"2018-08-24 22:56:43","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}
 {"level":"INFO","time":"2018-08-24 22:58:02","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}
 {"level":"INFO","time":"2018-08-25 19:09:59","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}
+{"level":"INFO","time":"2018-08-25 19:19:41","caller":"E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19","msg":"http: closing","port":"[::]:6616"}

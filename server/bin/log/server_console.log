@@ -42,3 +42,4 @@
 2018-08-24 22:56:43	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}
 2018-08-24 22:58:02	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}
 2018-08-25 19:09:59	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}
+2018-08-25 19:19:41	[34mINFO[0m	E:/d代购/server/src/ChenHC/internal/httpapi/httpserver.go:19	http: closing	{"port": "[::]:6616"}
