@@ -4,3 +4,4 @@ server/bin/log
 
 /server/bin/go_build_main_go
 *.log
+panic
