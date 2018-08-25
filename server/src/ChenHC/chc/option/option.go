@@ -95,7 +95,7 @@ func NewOpts(proDir, BUILDTYPE string) (opts *Options) {
 
 //mkdirProDir logDir目录下创建logDir，fileDir目录
 func mkdirProDir(logDir, fileDir string) error {
-	//创建log目录在项目目录下
+	//创建log目录在bin目录下
 	if _, err := os.Stat(logDir); os.IsNotExist(err) {
 		os.Mkdir(logDir, 0770)
 	} else {

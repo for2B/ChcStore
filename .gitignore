@@ -1,2 +1,6 @@
 server/.idea
 server/bin/log
+/server/bin/debug
+
+/server/bin/go_build_main_go
+*.log
