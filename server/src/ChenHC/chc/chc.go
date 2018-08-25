@@ -36,7 +36,7 @@ func New(opts *option.Options) *CHC {
 		exitChan:       make(chan struct{}),  //使用空结构，避免内存滥用。exitChan 仅做信号通知，没有实际价值
 		infrastructure: infrastructure.NewInfrastructure(opts),
 	}
-	fmt.Println("初始化CHC完成")
+	fmt.Println("init CHC success!")
 	return p
 }
 

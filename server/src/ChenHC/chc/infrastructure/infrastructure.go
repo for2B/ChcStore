@@ -51,7 +51,7 @@ func NewInfrastructure(opts *option.Options) (i *Infrastructure) {
 	i.InitLogger()
 
 	wechat.InitWeChat( opts.AppID, opts.AppSecret, i.CacheManager)
-	fmt.Println("初始化Infrastructure完成。")
+	fmt.Println("init Infrastructure success!")
 	return
 }
 
@@ -114,7 +114,7 @@ func (i *Infrastructure) InitLogger() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("初始化zap.logger完成。")
+	fmt.Println("init zap.logger success!")
 }
 
 func logEncodeTime(t time.Time, enc zapcore.PrimitiveArrayEncoder) {

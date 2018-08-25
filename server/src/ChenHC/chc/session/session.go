@@ -35,7 +35,7 @@ func (s *SessionManager) Init(SessionKey string, MaxLifeTime int, Path string, H
 	maxAge = MaxAge
 	s.cache = c
 	s.Build_type = BUILD_TYPE
-	fmt.Println("初始化SessionManager完成。")
+	fmt.Println("init SessionManager success!")
 }
 
 /*

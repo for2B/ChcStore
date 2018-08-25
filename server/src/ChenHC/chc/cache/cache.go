@@ -16,7 +16,7 @@ func NewCacheManager(stormDBpath string) *CacheManager {
 	cm := &CacheManager{}
 	// fmt.Println(stormDBpath)
 	cm.InitStormDB(stormDBpath)
-	fmt.Println("初始化CacheManager完成。")
+	fmt.Println("init CacheManager success")
 	return cm
 }
 
