@@ -66,7 +66,7 @@ func (i *Infrastructure) setOpts(opts *option.Options) {
 //初始zap.logger包
 func (i *Infrastructure) InitLogger() {
 	logLevel := zap.NewAtomicLevelAt(zap.DebugLevel)
-	logEncoderConfig := zapcore.EncoderConfig{
+	logEncoderConfig := zapcore.EncoderConfig{  //特定格式编码配置
 		MessageKey:     "msg",
 		LevelKey:       "level",
 		TimeKey:        "time",
@@ -95,7 +95,7 @@ func (i *Infrastructure) InitLogger() {
 		if err != nil {
 			panic(err)
 		}
-
+		//创建LoggerCore实例
 		DbLoggerWriteSyncer := dbloggercore.NewDbLoggerWriteSyncer(
 			i.DB, i.GetOpts().LoggerBufferCap, i.GetOpts().LoggerBufDuration)
 
@@ -103,7 +103,7 @@ func (i *Infrastructure) InitLogger() {
 
 		c := zapcore.NewCore(
 			zapcore.NewJSONEncoder(logEncoderConfig),
-			zapcore.NewMultiWriteSyncer(DbLoggerWriteSyncer, jsonFileWriteSyncer),
+			zapcore.NewMultiWriteSyncer(DbLoggerWriteSyncer, jsonFileWriteSyncer), //输出到数据库，log文件保存。。。。
 			logLevel,
 		)
 		return zapcore.NewTee(core, c)
@@ -115,6 +115,7 @@ func (i *Infrastructure) InitLogger() {
 		panic(err)
 	}
 	fmt.Println("init zap.logger success!")
+
 }
 
 func logEncodeTime(t time.Time, enc zapcore.PrimitiveArrayEncoder) {

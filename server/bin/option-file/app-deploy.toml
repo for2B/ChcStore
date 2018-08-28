@@ -14,7 +14,7 @@ RedisPwd = ""
 RedisDB = 0
 
 #服务器地址
-serverPort="6616"
+serverPort="6618"
 
 #日志文件名称
 errOutPutPath="logger_err.log"

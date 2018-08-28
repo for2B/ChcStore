@@ -10,11 +10,11 @@ import (
 )
 
 type LoggerCore struct {
-	loggerBuffer chan *bytes.Buffer
+	loggerBuffer chan *bytes.Buffer  //logger缓冲区
 	sync.Mutex
-	dB      *sql.DB
-	bufPool sync.Pool
-	syncReq chan struct{}
+	dB      *sql.DB	//数据库
+	bufPool sync.Pool //对象池
+	syncReq chan struct{}  //传递信号
 }
 
 func NewDbLoggerWriteSyncer(db *sql.DB, loggerBufferCap int, LoggerBufDuration int64) *LoggerCore {
@@ -29,17 +29,17 @@ func NewDbLoggerWriteSyncer(db *sql.DB, loggerBufferCap int, LoggerBufDuration i
 		syncReq: make(chan struct{}),
 	}
 
-	go func() {
-		ticker := time.NewTicker(time.Duration(LoggerBufDuration) * time.Millisecond)
+	go func() {  //开一个定时线程，每个固定LoggerBufDuration时间，就发出同步信号同步日志信息
+		ticker := time.NewTicker(time.Duration(LoggerBufDuration) * time.Millisecond)  //NewTicker返回一个新的Ticker，该Ticker包含一个通道字段，并会每隔时间段d就向该通道发送当时的时间
 		for {
 			select {
-			case <-ticker.C:
+			case <-ticker.C:  //Ticker保管一个通道，并每隔一段时间向其传递"tick"。
 				t.SyncRequest()
 			}
 		}
 	}()
 
-	go func() {
+	go func() { //接受到同步信号后开始同步
 		for {
 			select {
 			case <-t.syncReq:
@@ -56,15 +56,15 @@ func (l LoggerCore) Write(p []byte) (n int, err error) {
 	b.Reset()
 	b.Write(p)
 	select {
-	case l.loggerBuffer <- b:
-	default:
+	case l.loggerBuffer <- b:  //写入管道
+	default: //如果管道满了则开启同步,同步完了之后再写入
 		l.SyncRequest()
 		l.loggerBuffer <- b
 	}
 	return len(p), nil
 }
 
-func (l LoggerCore) Sync() error {
+func (l LoggerCore) Sync() error { //同步数据，将logger数据写入到数据库
 	l.Lock()
 	defer l.Unlock()
 	txn, err := l.dB.Begin()
