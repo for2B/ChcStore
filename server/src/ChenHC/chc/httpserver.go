@@ -135,15 +135,16 @@ func (s *httpServer) initRouter() {
 
 //chenhuiliang add end——  ——  ——  ——  ——  ——  ——
 func (s *httpServer) UploadFile(r *mux.Router){ //处理文件上传并保存
+	path ,_:= utils.GetProDir()
 	c := &project_controllet.UpLoadFileController{
-		UploadFileModel:project_model.GetUploadfilemodel(s.ctx.CHC.infrastructure,s.ctx.CHC.infrastructure.GetOpts().AllowOrigin),
+		UploadFileModel:project_model.GetUploadfilemodel(s.ctx.CHC.infrastructure,path),
 	}
 	r.Handle("/api/upload_file",httpapi.Decorate(c.UploadFile,s.AllowOrigin,middleware.Online,middleware.DefaultDecode,middleware.Log(s.ctx.CHC.infrastructure.Logger)))
 }
 
-func (s *httpServer) DownFile(r *mux.Router){
-	path ,_:= utils.GetProDir()
-	fmt.Println(path)
+	func (s *httpServer) DownFile(r *mux.Router){
+		path ,_:= utils.GetProDir()
+		fmt.Println(path)
 	r.PathPrefix("/files/").Handler( http.StripPrefix("/files/",http.FileServer(http.Dir(path))))
 }
 

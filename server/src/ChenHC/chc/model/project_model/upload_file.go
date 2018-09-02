@@ -9,16 +9,16 @@ var onceGetUploadFile sync.Once
 
 type UploadFileModel struct {
 	*infrastructure.Infrastructure
-	AllowOrign string
+	FilePath string
 }
 
 var uploadfilemodel *UploadFileModel
 
-func GetUploadfilemodel (i *infrastructure.Infrastructure,Alloworigin string) *UploadFileModel{
+func GetUploadfilemodel (i *infrastructure.Infrastructure,filepath string) *UploadFileModel{
 	onceGetUploadFile.Do(func() {
 			uploadfilemodel = &UploadFileModel{
 				Infrastructure:i,
-				AllowOrign:Alloworigin,
+				FilePath:filepath,
 			}
 	})
 	return uploadfilemodel
