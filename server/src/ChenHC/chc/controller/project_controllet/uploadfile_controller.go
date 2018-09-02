@@ -19,6 +19,7 @@ type Link struct {
 type UpLoadFileController struct {
 	*project_model.UploadFileModel
 }
+var FilePath = "bin/project_item_src/"
 
 func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request) (interface{},error){
 
@@ -35,8 +36,8 @@ func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request)
 			return nil,err
 		}
 		defer file.Close()
-		fmt.Fprint(w,"%v",handler.Header)
-			f,err := os.OpenFile("bin/project_item_src/"+token+handler.Filename,os.O_WRONLY|os.O_APPEND|os.O_CREATE,0666)
+		filename := FilePath+token+handler.Filename
+			f,err := os.OpenFile(filename,os.O_WRONLY|os.O_APPEND|os.O_CREATE,0666)
 			if err!=nil{
 				fmt.Println("OpenFile failed",err)
 				return nil,err
@@ -47,7 +48,7 @@ func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request)
 				fmt.Println("copy file failed",err)
 			return nil,err
 		}
-		lk := Link{Link:"http://chl.ish2b.cn/ospf/"}
+		lk := Link{Link:"http://localhost:6618/files/"+token+handler.Filename}
 		buf, err := json.Marshal(lk)
 		if err!=nil{
 			fmt.Println("json Marshal faild",err)
