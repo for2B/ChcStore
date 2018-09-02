@@ -145,7 +145,7 @@ func (s *httpServer) UploadFile(r *mux.Router){ //处理文件上传并保存
 	func (s *httpServer) DownFile(r *mux.Router){
 		path ,_:= utils.GetProDir()
 		fmt.Println(path)
-	r.PathPrefix("/files/").Handler( http.StripPrefix("/files/",http.FileServer(http.Dir(path))))
+	r.PathPrefix("/files/").Handler( http.StripPrefix("/files/",http.FileServer(http.Dir(path+"/project_item_src/"))))
 }
 
 
