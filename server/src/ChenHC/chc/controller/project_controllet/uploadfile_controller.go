@@ -20,6 +20,8 @@ type UpLoadFileController struct {
 	*project_model.UploadFileModel
 }
 
+var PATH ="./bin/project_item_src"
+
 func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request) (interface{},error){
 
 	if r.Method == "POST"{
@@ -35,7 +37,7 @@ func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request)
 			return nil,err
 		}
 		defer file.Close()
-		filename := c.UploadFileModel.FilePath+token+handler.Filename
+		filename := PATH+token+handler.Filename
 			f,err := os.OpenFile(filename,os.O_WRONLY|os.O_APPEND|os.O_CREATE,0666)
 			if err!=nil{
 				fmt.Println("OpenFile failed",err)
