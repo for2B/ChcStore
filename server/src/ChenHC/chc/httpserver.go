@@ -10,6 +10,8 @@ import (
 	"ChenHC/chc/controller"
 	"ChenHC/chc/controller/project_controllet"
 	"ChenHC/chc/model/project_model"
+	"ChenHC/utils"
+	"fmt"
 )
 
 type context struct {
@@ -140,7 +142,9 @@ func (s *httpServer) UploadFile(r *mux.Router){ //处理文件上传并保存
 }
 
 func (s *httpServer) DownFile(r *mux.Router){
-	r.PathPrefix("/files/").Handler( http.StripPrefix("/files/",http.FileServer(http.Dir("./bin/project_item_src"))))
+	path ,_:= utils.GetProDir()
+	fmt.Println(path)
+	r.PathPrefix("/files/").Handler( http.StripPrefix("/files/",http.FileServer(http.Dir(path))))
 }
 
 
