@@ -37,7 +37,7 @@ func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request)
 			return nil,err
 		}
 		defer file.Close()
-		filename := PATH+token+handler.Filename
+		filename := c.UploadFileModel.FilePath+"/bin/project_item_src"+token+handler.Filename
 			f,err := os.OpenFile(filename,os.O_WRONLY|os.O_APPEND|os.O_CREATE,0666)
 			if err!=nil{
 				fmt.Println("OpenFile failed",err)
