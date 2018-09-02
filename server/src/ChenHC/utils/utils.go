@@ -56,8 +56,8 @@ func HandlePanic(proDir string) {
 
 // 获取多个url参数 map版本
 func GetURLParams(r *http.Request, key ...string) map[string]string {
-	urlParams := make(map[string]string)
-	for _, param := range key {
+		urlParams := make(map[string]string)
+		for _, param := range key {
 		urlParams[param] = r.URL.Query().Get(param)
 	}
 	return urlParams

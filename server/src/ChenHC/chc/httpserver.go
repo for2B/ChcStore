@@ -1,15 +1,17 @@
 package chc
 
 import (
-	"ChenHC/chc/constant"
 	"ChenHC/chc/middleware"
 	"ChenHC/chc/model"
 	"ChenHC/chc/view"
 	"ChenHC/internal/httpapi"
 	"net/http"
-
 	"github.com/gorilla/mux"
 	"ChenHC/chc/controller"
+	"ChenHC/chc/controller/project_controllet"
+	"ChenHC/chc/model/project_model"
+	"ChenHC/utils"
+	"fmt"
 )
 
 type context struct {
@@ -37,9 +39,7 @@ func newHTTPServer(ctx *context) *httpServer {
 		defaultMiddleWare: httpapi.CombinationMiddleware(middleware.Online,  //中间介函数
 			middleware.DefaultDecode,
 			middleware.Encode,
-			middleware.Log(ctx.CHC.infrastructure.Logger), //调用了Log函数 返回匿名的MiddlewareFunc函数，为了能够带参数
-			middleware.Session(ctx.CHC.infrastructure.SessionManager),
-			middleware.Permission(constant.USER_ADMIN)),
+			middleware.Log(ctx.CHC.infrastructure.Logger)),//调用了Log函数 返回匿名的MiddlewareFunc函数，为了能够带参数
 	}
 	s.initRouter()
 	initFrontEndMux(router)
@@ -64,7 +64,7 @@ func (s *httpServer) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 func (s *httpServer) AllowOrigin(next httpapi.APIHandler) httpapi.APIHandler {
 	return func(w http.ResponseWriter, r *http.Request) (response interface{}, err error) {
-		w.Header().Set("Access-Control-Allow-Origin", s.ctx.CHC.infrastructure.GetOpts().AllowOrigin)
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Add("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Add("Access-Control-Allow-Credentials", "true")
 		w.Header().Set("content-type", "application/json")
@@ -101,7 +101,8 @@ func (s *httpServer) initRouter() {
 
 
 	//chenhuiliang add end——  ——  ——  ——  ——  ——  ——
-
+	s.UploadFile(s.router) //上传文件
+	s.DownFile(s.router) //下载文件接口
 	//chencanxin add start~~~~~~~~~
 	s.regLogController(s.router) //注册api和处理函数
 
@@ -133,6 +134,19 @@ func (s *httpServer) initRouter() {
 
 
 //chenhuiliang add end——  ——  ——  ——  ——  ——  ——
+func (s *httpServer) UploadFile(r *mux.Router){ //处理文件上传并保存
+	c := &project_controllet.UpLoadFileController{
+		UploadFileModel:project_model.GetUploadfilemodel(s.ctx.CHC.infrastructure,s.ctx.CHC.infrastructure.GetOpts().AllowOrigin),
+	}
+	r.Handle("/api/upload_file",httpapi.Decorate(c.UploadFile,s.AllowOrigin,middleware.Online,middleware.DefaultDecode,middleware.Log(s.ctx.CHC.infrastructure.Logger)))
+}
+
+func (s *httpServer) DownFile(r *mux.Router){
+	path ,_:= utils.GetProDir()
+	fmt.Println(path)
+	http.Handle("/files/", http.StripPrefix("/files/",http.FileServer(http.Dir("./bin/"))))
+}
+
 
 //chencanxin add start~~~~~~~~~
 func (s *httpServer) regLogController(r *mux.Router) { //配置api和对应的处理函数
