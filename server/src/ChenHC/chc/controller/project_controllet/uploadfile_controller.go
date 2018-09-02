@@ -48,7 +48,7 @@ func (c *UpLoadFileController) UploadFile(w http.ResponseWriter,r *http.Request)
 				fmt.Println("copy file failed",err)
 			return nil,err
 		}
-		lk := Link{Link:"http://localhost:6618/files/"+token+handler.Filename}
+		lk := Link{Link:"http://chl.ish2b.cn:6618/files/"+token+handler.Filename}
 		buf, err := json.Marshal(lk)
 		if err!=nil{
 			fmt.Println("json Marshal faild",err)
